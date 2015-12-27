@@ -27,6 +27,7 @@
 #  locked_at                 :datetime
 #  onboarded                 :boolean          default(FALSE)
 #  open_for_offers           :boolean          default(FALSE)
+#  phone_number              :string
 #  remember_created_at       :datetime
 #  reset_password_sent_at    :datetime
 #  reset_password_token      :string

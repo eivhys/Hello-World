@@ -203,20 +203,21 @@ senior_exercise_2.assessments.create!(hidden: false, input: "[]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[0]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[-3, -2, -1]", leeway: 500)
 
-User.create!(
-  given_name: "Michael",
-  family_name: "Baiteland",
-  display_name: "McBaith",
-  email: "michael@test.com",
-  date_of_birth: Date.new(1993, 11, 28),
-  phone_number: "555-555-5555",
-)
+# When in need of testers, uncomment this
+# User.create!(
+  # given_name: "Michael",
+  # family_name: "Baiteland",
+  # display_name: "McBaith",
+  # email: "michael@test.com",
+  # date_of_birth: Date.new(1993, 11, 28),
+  # phone_number: "555-555-5555",
+# )
 
-User.create!(
-  given_name: "Håvard",
-  family_name: "Solbær",
-  display_name: "Mogens",
-  email: "mogens@test.dk",
-  date_of_birth: Date.new(1994, 2, 15),
-  phone_number: "555-555-5555",
-)
+# User.create!(
+  # given_name: "Håvard",
+  # family_name: "Solbær",
+  # display_name: "Mogens",
+  # email: "mogens@test.dk",
+  # date_of_birth: Date.new(1994, 2, 15),
+  # phone_number: "555-555-5555",
+# )

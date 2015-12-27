@@ -14,5 +14,6 @@ class AddColumnsToUsers < ActiveRecord::Migration[7.0]
     add_column(:users, :onboarded, :boolean, default: false)
     add_column(:users, :linked_in_handle, :string)
     add_column(:users, :github_handle, :string)
+    add_column(:users, :phone_number, :string)
   end
 end

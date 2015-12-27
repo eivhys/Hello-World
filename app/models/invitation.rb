@@ -34,12 +34,12 @@ class Invitation < ApplicationRecord
   validates :user_id, uniqueness: { scope: :challenge_id }
 
   scope :unclaimed, -> { where(user_id: nil) }
-  after_update_commit lambda do
+  after_update_commit lambda {
     broadcast_prepend_to(
       "invitations",
       partial: "invitations/invitation",
       locals: { invitation: self },
       target: "invitations"
     )
-  end
+  }
 end
