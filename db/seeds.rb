@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-puts '=== Running seeds.rb 🌱 ==='
+puts '== Running seeds.rb 🌱 =='
 
 ruby_constraint = Constraint.create(
   title: 'Ruby 3.1.1',
@@ -85,10 +85,10 @@ senior_exercise_story_2 = <<~EOL
   After making good progress on Mars you're off to Venus. To you surprise, it's already inhabited by giant flytraps, I guess that's where they originate from.<br/><br/>
   They are quite scary and dangerous, so it might be best to attempt making an alliance with them, making a good first impression is crucial!<br/><br/>
   The venusian flytraps are very intelligent and thankful for your effort for the plant kingdom on Mars, so they'll provide you with a task to see if you're worthy of their trust.<br/><br/>
-  Appearently there's a war raging between the venusian flytraps and the venusian mushroom empire. As the flytraps are carnivores they are incapable of the mushrooms, which is the quickest way to dispose them, this is where you come in handy.<br/><br/>
+  Appearently there's a war raging between the venusian flytraps and the venusian mushroom empire. As the flytraps are carnivores they are incapable of eating the mushrooms, which is the quickest way to dispose them, this is where you come in handy.<br/><br/>
   The task is simple, eat as many mushrooms as possible in order to lead the flytraps to victory, but be ware, eating a number of mushrooms that's not divisible by 3 will send you to another planet, foiling your chances of making alliances on the planet you're currently on, don't mess it up!
   <br/><br/>
-  Create a method solution that takes a list of integers representing a number of mushrooms as its input. It should return the maximum number of mushrooms you are able to eat as a string. A number can only be used as many times as it appears in the input, if there is no solution return "Impossible".
+  Create a method solution that takes a list of integers, representing a number of mushrooms in a legion, as its input. It should return the maximum number of mushrooms you are able to eat as a string. A number can only be used as many times as it appears in the input, if there is no solution return "Impossible".
   <br/><br/>
   Example 1:<br/>
   <b>Input: [3, 2, 1], solution => 321 </b>
