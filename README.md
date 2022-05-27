@@ -9,9 +9,12 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 ```
 
-
-To start the project run the following command:
-
+To start PostgreSQL and Redis:
 ```bash
 docker compose up
+```
+
+To start Puma and ESBuild:
+```bash
+bin/dev
 ```
