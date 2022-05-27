@@ -1,0 +1,9 @@
+<div class="stats shadow">
+  <div class="stat">
+    <div class="stat-title"><%= submission %></div>
+    <div class="stat-value">
+      <a class="link">Passed: <%= submission.results.filter(&:passed?).count %>/<%= submission.results.count %></a>
+    </div>
+    <div class="stat-desc"><%= time_ago_in_words(submission.created_at) %> ago</div>
+  </div>
+</div>

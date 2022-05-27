@@ -1,0 +1,10 @@
+<h2 class="font-bold text-xl">Level <%= level.position %>: <%= level.title %></h2>
+<ol>
+  <% level.exercises.each do |exercise| %>
+    <li>
+      - <%= link_to exercise.title, exercise, class: "link" %>
+        <br/>
+    </li>
+  <% end %>
+</ol>
+

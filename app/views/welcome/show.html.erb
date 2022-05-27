@@ -1,0 +1,21 @@
+<div class="flex justify-between w-full">
+  <div>
+    <%= turbo_frame_tag "invitations" do %>
+      <%= render @invitations %>
+    <% end %>
+  </div>
+  <div class="max-w-md">
+    <h1 class="text-5xl font-bold">Hello <%= current_user.given_name %></h1>
+    <p class="py-6">Congratulations, you've found us! Or maybe we found you... doesn't matter, please enter your invitation code below in order to start the challenge</p>
+    <%= turbo_frame_tag "new_invitation" do %>
+      <%= simple_form_for :invitation, url: welcome_path, method: :patch do |f| %>
+        <div class="flex justify-center border-t border-base-300">
+          <%= f.error_notification %>
+          <%= f.input :code, label: false, placeholder: "Invitation code" %>
+          <%= f.button :submit, "GET STARTED", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

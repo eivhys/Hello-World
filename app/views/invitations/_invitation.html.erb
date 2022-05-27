@@ -1,0 +1,36 @@
+<div class="float-right">
+  <%= turbo_frame_tag invitation do %>
+    <span>
+      / <%= link_to invitation.challenge.title, invitation.challenge, class: "link", data: { turbo: false }  %>
+    </span>
+    <span class="countdown font-mono text-1xl">
+      (<span style="--value:10;"></span>:
+      <span style="--value:24;"></span>:
+      <span style="--value:53;"></span>)
+    </span>
+    <br/>
+    <% invitation.challenge.levels.each.with_index(1) do |level, level_index| %>
+      <% if level_index == invitation.challenge.levels.count %>
+        └──
+      <% else %>
+        ├──
+      <% end %>
+      <%= level_index %>. <%= level.title %><br/>
+      <% level.exercises.each.with_index(1) do |exercise, exercise_index| %>
+        <% if level_index == level.exercises.count && !(level.exercises.count == exercise_index) || level_index < invitation.challenge.levels.count %>
+          │&nbsp;&nbsp;
+        <% else %>
+          &nbsp;&nbsp;&nbsp;
+        <% end %>
+        <% if exercise_index == level.exercises.count %>
+          └──
+        <% else %>
+          ├──
+        <% end %>
+        <%= link_to exercise.title, exercise, class: "link", data: { turbo: false } %>
+      <% end %>
+      <br/>
+    <% end %>
+  <% end %>
+  <br/>
+</div>

@@ -1,0 +1,32 @@
+<div class="hero bg-base-200">
+  <div class="hero-content text-center">
+    <!-- div class="mockup-window border bg-base-300"-->
+      <div class="flex justify-center px-8 py-8 border-t border-base-300">
+        <div>
+          <h1 class="text-3xl">Hello!</h1>
+          <br/>
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+            <div>
+              <%= f.input :email,
+                          required: false,
+                          autofocus: true,
+                          input_html: { autocomplete: "email" } %>
+              <%= f.input :password,
+                          required: false,
+                          input_html: { autocomplete: "current-password" } %>
+              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "sign in", class: "btn-primary btn-wide" %>
+            </div>
+          <% end %>
+
+          <div class="flex justify-center border-t border-base-300">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    <!--/div-->
+  </div>
+</div>

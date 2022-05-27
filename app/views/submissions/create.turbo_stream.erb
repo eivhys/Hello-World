@@ -1,0 +1,3 @@
+<%= @submission.results.each do |result| %>
+  <%= turbo_stream.prepend "results", result %>
+<% end %>

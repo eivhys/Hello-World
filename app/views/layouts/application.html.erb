@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Runit</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script>
+      var require = {
+        paths: {
+          'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.25.0/min/vs'
+          }
+      }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.25.0/min/vs/loader.min.js" integrity="sha512-SExj71Cw3B9C9EE8BC/ad3AKia5zQXDj/2SM4THgkeKh5GIFZhKM/R3uclUG8YZwJrjcVhydAlIHmfNvsBCKZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.25.0/min/vs/editor/editor.main.nls.min.js" integrity="sha512-/Lpr8XyEnghf+eu5/ytlh92qc6gEWUodmPjmxRFKqBG1ZzS0Qif87TFRnRy7BMf6epqv2NdE13JYvnvrSPVAvQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.25.0/min/vs/editor/editor.main.min.js" integrity="sha512-5C0MPEOQ4wdZmcnqIDduJAWxFNZr52PZjL7IyBW+SqvGe6rG2eDyXtQJOpiSONjrKCZSAfE7vLFNoQTMgo8IYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: false %>
+  </head>
+  <body>
+    <div id="flash" class="flash">
+      <%= render "layouts/flash" %>
+    </div>
+    <!--
+    _____     _ _        _ _ _         _   _
+    |  |  |___| | |___   | | | |___ ___| |_| |
+    |     | -_| | | . |  | | | | . |  _| | . |
+    |__|__|___|_|_|___|  |_____|___|_| |_|___|
+
+    Hello world! You found me! Take this invitation code and share it with your friends!
+    <%= SecureRandom.hex %> // TODO: Replace with an actual invitation code!
+    -->
+    <div class="container mx-auto px-4 flex-1">
+      <% if current_user %>
+        <%= render "layouts/header" %>
+      <% end %>
+    </div>
+    <br/>
+    <main class="container mx-auto px-5 flex">
+      <%= yield %>
+    </main>
+    <br/>
+    <%= render "layouts/footer" %>
+  </body>
+</html>

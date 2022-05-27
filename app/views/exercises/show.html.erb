@@ -1,0 +1,27 @@
+<div class="w-8/12 pr-10">
+  <h1 class="font-bold text-2xl"><%= @exercise.title %></h1>
+  <hr/>
+  <p><%= @exercise.description %></p>
+</div>
+<div class="w-6/12">
+  <h2 class="font-bold text-2xl">Solution</h2>
+  <hr/>
+  <%= simple_form_for :submission, url: exercise_submissions_path(@exercise) do |f| %>
+    <%= f.input :implementation, placeholder: "Enter your solution implementation here 📋", as: :hidden %>
+    <div data-controller="monaco"
+      id="codeEditor"
+      style="width:auto;height:24rem;border:1px solid white;margin-bottom:1rem;"
+      data-lang="ruby"
+      data-monaco-target="submission_implementation"
+      data-action="change->monaco#onChange"
+    >
+    </div>
+    <%= f.button :submit, class: "btn-primary" %>
+  <% end %>
+  <br/>
+
+  <%= turbo_stream_from "results" %>
+  <%= turbo_frame_tag "results" do %>
+    <%= render [] %>
+  <% end %>
+</div>
