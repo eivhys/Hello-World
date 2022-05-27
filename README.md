@@ -5,8 +5,8 @@ Hello World is a project that revolves around making fun code challenges for rec
 ## Get started!
 Create `.env` with the following variables:
 ```bash
-POSTGRES_USER: postgres
-POSTGRES_PASSWORD: postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
 ```
 
 
