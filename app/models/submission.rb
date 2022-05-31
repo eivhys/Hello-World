@@ -35,10 +35,30 @@ class Submission < ApplicationRecord
 
   after_create :initiate_results
   after_create :assess_submission
+  after_update :add_highscore_to_leaderboard, if: ->(submission) { submission.highscore? }
 
   scope :passed, -> { where(passed: true) }
 
   before_create -> { implementation.chomp! }
+
+  def current_highscore?
+    Submission.where(
+      exercise: exercise,
+      user: user,
+      passed: true,
+      score: score..Float::INFINITY
+    ).count.zero?
+  end
+
+  def highscore?
+    Submission.where(
+      exercise: exercise,
+      user: user,
+      passed: true,
+      created_at: exercise.created_at..created_at,
+      score: score..Float::INFINITY
+    ).count.zero?
+  end
 
   def assess_submission
     AssessSubmissionJob.perform_later(id)
@@ -52,5 +72,15 @@ class Submission < ApplicationRecord
     assessments.each do |assessment|
       assessment.results.create(submission: self, state: Result::State::PENDING, passed: false)
     end
+  end
+
+  private
+
+  def leaderboard
+    Kredis.hash "leaderboard_#{exercise_id}", typed: :float
+  end
+
+  def add_highscore_to_leaderboard
+    leaderboard.update(user_id => score)
   end
 end

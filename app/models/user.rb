@@ -54,4 +54,13 @@ class User < ApplicationRecord
   def full_name
     "#{given_name} #{family_name}"
   end
+
+  def passed_challenge?(challenge)
+    !submissions.where(exercise_id: challenge.exercises.pluck(:id))
+      .where(passed: false).count.zero?
+  end
+
+  def passed_exercise?(exercise)
+    submissions.where(exercise_id: exercise.id).where(passed: true).count.positive?
+  end
 end
