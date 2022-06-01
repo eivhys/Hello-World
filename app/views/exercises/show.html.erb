@@ -1,11 +1,11 @@
 <div class="w-8/12 pr-10">
   <h1 class="font-bold text-2xl"><%= @exercise.title %></h1>
-  <hr/>
+  <br/>
   <p><%= @exercise.description %></p>
 </div>
 <div class="w-6/12">
   <h2 class="font-bold text-2xl">Solution</h2>
-  <hr/>
+  <br/>
   <%= simple_form_for :submission, url: exercise_submissions_path(@exercise) do |f| %>
     <%= f.input :implementation, placeholder: "Enter your solution implementation here 📋", as: :hidden %>
     <div data-controller="monaco"

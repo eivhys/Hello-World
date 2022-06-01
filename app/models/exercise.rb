@@ -33,4 +33,8 @@ class Exercise < ApplicationRecord
   validates :title, presence: true
   validates :level, presence: true
   validates :position, presence: true, numericality: { only_integer: true }
+
+  def leaderboard
+    submissions.unscoped.passed.group(:user).minimum(:score).sort_by { |_key, value| value }
+  end
 end

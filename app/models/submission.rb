@@ -76,11 +76,9 @@ class Submission < ApplicationRecord
 
   private
 
-  def leaderboard
-    Kredis.hash "leaderboard_#{exercise_id}", typed: :float
-  end
+
 
   def add_highscore_to_leaderboard
-    leaderboard.update(user_id => score)
+    exercise.leaderboard.update(user_id => score)
   end
 end

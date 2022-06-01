@@ -3,11 +3,6 @@
     <span>
       / <%= link_to invitation.challenge.title, invitation.challenge, class: "link", data: { turbo: false }  %>
     </span>
-    <span class="countdown font-mono text-1xl">
-      (<span style="--value:10;"></span>:
-      <span style="--value:24;"></span>:
-      <span style="--value:53;"></span>)
-    </span>
     <br/>
     <% invitation.challenge.levels.each.with_index(1) do |level, level_index| %>
       <% if level_index == invitation.challenge.levels.count %>

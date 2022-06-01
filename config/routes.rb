@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :challenges, only: [:show] do
-    resource :leaderboard
-  end
+  resources :challenges, only: [:show]
   resources :exercises, only: [:show] do
+    resource :leaderboard
     resources :submissions, only: [:create]
   end
   namespace :admin do

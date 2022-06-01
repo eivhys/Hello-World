@@ -3,9 +3,8 @@
     <!-- div class="mockup-window border bg-base-300"-->
       <div class="flex justify-center px-8 py-8 border-t border-base-300">
         <div>
-          <h1 class="text-3xl">Hello!</h1>
           <div class="flex w-full" style="align-items: center">
-            <div class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">
+            <div class="grid flex-grow card bg-base-300 rounded-box place-items-center">
               <br/>
               <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
                 <div>
@@ -29,7 +28,7 @@
               </div>
             </div>
             <div class="divider divider-horizontal m-3">&nbsp;&nbsp;OR&nbsp;&nbsp;</div>
-            <div class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">
+            <div class="grid flex-grow card bg-base-300 rounded-box place-items-center">
               <%= render "devise/shared/integrations" %>
             </div>
           </div>
