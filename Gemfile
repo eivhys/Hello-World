@@ -73,7 +73,8 @@ group :development do
 
   # Find N+1 queries
   gem 'bullet'
-
+  gem 'rubocop-rails', '~> 2.14'
+  gem "rubocop-shopify"
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
@@ -93,5 +94,4 @@ gem 'binding_of_caller', '~> 1.0'
 gem 'database_cleaner-active_record', '~> 2.0'
 gem 'devise', '~> 4.8'
 gem 'factory_bot', '~> 6.2'
-gem 'rubocop-rails', '~> 2.14'
 gem 'simple_form'

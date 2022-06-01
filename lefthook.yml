@@ -1,0 +1,4 @@
+pre-push: # githook name
+  commands: # list of commands
+    style-audit: # command name
+      run: rubocop -A && rubocop # command for execution
