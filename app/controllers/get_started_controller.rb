@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GetStartedController < ApplicationController
   include Wicked::Wizard
 
@@ -17,13 +19,13 @@ class GetStartedController < ApplicationController
       else
         @invitation.assign_attributes(user: @user)
       end
-      render_wizard @invitation, options
+      render_wizard(@invitation, options)
     when :complete_profile
       if @user.onboarded?
-        redirect_to root_path
+        redirect_to(root_path)
       else
         @user.assign_attributes(**user_params, onboarded: true)
-        render_wizard @user
+        render_wizard(@user)
       end
     else
       render_wizard
@@ -43,7 +45,8 @@ class GetStartedController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:display_name, :given_name, :family_name, :phone_number, :linked_in_url, :github_url, :twitter_url, :website_url, :bio, :profile_images, :open_for_offers, :anonymous_on_leaderboards)
+    params.require(:user).permit(:display_name, :given_name, :family_name, :phone_number, :linked_in_url, :github_url,
+      :twitter_url, :website_url, :bio, :profile_images, :open_for_offers, :anonymous_on_leaderboards)
   end
 
   def invitation_params

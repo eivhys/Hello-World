@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/integer/time'
+require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   config.after_initialize do
@@ -13,10 +13,10 @@ Rails.application.configure do
     Bullet.add_footer    = true
   end
 
-  BetterErrors::Middleware.allow_ip!('10.0.0.0/8')
-  BetterErrors::Middleware.allow_ip!('172.24.0.1/12')
-  BetterErrors::Middleware.allow_ip!('172.16.0.0/12')
-  BetterErrors::Middleware.allow_ip!('192.168.0.0/16')
+  BetterErrors::Middleware.allow_ip!("10.0.0.0/8")
+  BetterErrors::Middleware.allow_ip!("172.24.0.1/12")
+  BetterErrors::Middleware.allow_ip!("172.16.0.0/12")
+  BetterErrors::Middleware.allow_ip!("192.168.0.0/16")
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -35,17 +35,17 @@ Rails.application.configure do
   config.server_timing = true
 
   # Devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false

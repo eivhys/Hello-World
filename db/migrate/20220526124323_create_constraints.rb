@@ -2,8 +2,8 @@
 
 class CreateConstraints < ActiveRecord::Migration[7.0]
   def change
-    create_table :constraints, id: :uuid do |t|
-      t.string :title
+    create_table(:constraints, id: :uuid) do |t|
+      t.string(:title)
 
       t.timestamps
     end

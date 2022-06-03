@@ -15,12 +15,12 @@ Rails.application.routes.draw do
     resources :result
     resources :invitations
 
-    root to: 'challenges#index' # <--- Root route
+    root to: "challenges#index" # <--- Root route
   end
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resource :welcome, only: :update, controller: :welcome
   resources :get_started
   # Defines the root path route ("/")
-  root 'welcome#show'
+  root "welcome#show"
 end

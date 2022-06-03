@@ -12,9 +12,9 @@ class SubmissionsController < ApplicationController
     respond_to do |format|
       format.turbo_stream
       if @submission.valid?
-        format.html { redirect_to @exercise }
+        format.html { redirect_to(@exercise) }
       else
-        format.html { redirect_to @exercise, status: :unprocessable_entity }
+        format.html { redirect_to(@exercise, status: :unprocessable_entity) }
       end
     end
   end

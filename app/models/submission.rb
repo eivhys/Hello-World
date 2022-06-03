@@ -76,8 +76,6 @@ class Submission < ApplicationRecord
 
   private
 
-
-
   def add_highscore_to_leaderboard
     exercise.leaderboard.update(user_id => score)
   end

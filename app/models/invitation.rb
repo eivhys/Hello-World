@@ -35,7 +35,7 @@ class Invitation < ApplicationRecord
 
   scope :unclaimed, -> { where(user_id: nil) }
   after_update_commit lambda {
-                        broadcast_prepend_to 'invitations', partial: 'invitations/invitation', locals: { invitation: self },
-                                                            target: 'invitations'
+                        broadcast_prepend_to("invitations", partial: "invitations/invitation", locals: { invitation: self },
+                          target: "invitations")
                       }
 end

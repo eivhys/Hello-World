@@ -26,10 +26,10 @@
 #
 class Result < ApplicationRecord
   module State
-    PENDING = 'pending'
-    RUNNING = 'running'
-    PASSED = 'passed'
-    FAILED = 'failed'
+    PENDING = "pending"
+    RUNNING = "running"
+    PASSED = "passed"
+    FAILED = "failed"
     ALL = [PENDING, RUNNING, PASSED, FAILED].freeze
   end
 
@@ -47,17 +47,17 @@ class Result < ApplicationRecord
   scope :passed, -> { where(state: Result::State::PASSED) }
   scope :failed, -> { where(state: Result::State::FAILED) }
 
-  after_create_commit -> { broadcast_prepend_to 'results' }
-  after_update_commit -> { broadcast_replace_to 'results' }
+  after_create_commit -> { broadcast_prepend_to("results") }
+  after_update_commit -> { broadcast_replace_to("results") }
 
   delegate :hidden?, :timeout, to: :assessment
 
   def benchmark!
     start!
     candidate_outcome = Assessments::Runner.call(submission.implementation, assessment.input, timeout,
-                                                 Assessments::Runners::Ruby::Evaluator)
+      Assessments::Runners::Ruby::Evaluator)
     recruiter_outcome = Assessments::Runner.call(exercise.implementation, assessment.input, timeout,
-                                                 Assessments::Runners::Ruby::Evaluator)
+      Assessments::Runners::Ruby::Evaluator)
     finish!(
       passed: acceptable_solution?(candidate_outcome, recruiter_outcome),
       result: candidate_outcome.result,

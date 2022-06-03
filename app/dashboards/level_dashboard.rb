@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'administrate/base_dashboard'
+require "administrate/base_dashboard"
 
 class LevelDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
@@ -16,7 +16,7 @@ class LevelDashboard < Administrate::BaseDashboard
     title: Field::String,
     position: Field::Number,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime
+    updated_at: Field::DateTime,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -24,34 +24,16 @@ class LevelDashboard < Administrate::BaseDashboard
   #
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
-  COLLECTION_ATTRIBUTES = %i[
-    challenge
-    exercises
-    id
-    title
-  ].freeze
+  COLLECTION_ATTRIBUTES = [:challenge, :exercises, :id, :title].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
-  SHOW_PAGE_ATTRIBUTES = %i[
-    challenge
-    exercises
-    id
-    title
-    position
-    created_at
-    updated_at
-  ].freeze
+  SHOW_PAGE_ATTRIBUTES = [:challenge, :exercises, :id, :title, :position, :created_at, :updated_at].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = %i[
-    challenge
-    exercises
-    title
-    position
-  ].freeze
+  FORM_ATTRIBUTES = [:challenge, :exercises, :title, :position].freeze
 
   # COLLECTION_FILTERS
   # a hash that defines filters that can be used while searching via the search

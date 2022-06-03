@@ -28,7 +28,7 @@ module Assessments
           with_safe_ruby_file do |file|
             start!
             thread = Thread.new do
-              `ruby #{file.path}`
+              %x(ruby #{file.path})
             end
 
             thread.kill unless thread.join(@timeout)
@@ -43,7 +43,7 @@ module Assessments
         end
 
         def with_safe_ruby_file
-          Tempfile.create(['runner', '.rb']) do |file|
+          Tempfile.create(["runner", ".rb"]) do |file|
             file.write(Assessments::Runners::Ruby::OverrideDisallowedCalls::OVERRIDE_DISALLOWED_CALLS)
             file.write(<<-STRING
         #{@implementation}

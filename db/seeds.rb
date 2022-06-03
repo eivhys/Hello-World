@@ -8,10 +8,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-puts '== Running seeds.rb 🌱 =='
+puts "== Running seeds.rb \u{1F331} =="
 
 ruby_constraint = Constraint.create(
-  title: 'Ruby 3.1.1',
+  title: "Ruby 3.1.1",
   description: "You will be using ruby 3.1.1, use of IO like the 'File' class or 'puts' method will cause the test to fail."
 )
 
@@ -26,9 +26,9 @@ junior_challenge_story = <<~EOL
   Good luck!
 EOL
 
-junior_level_title = 'Infiltrating the ranks'
+junior_level_title = "Infiltrating the ranks"
 
-junior_exercise_title = 'Cleaning the floor'
+junior_exercise_title = "Cleaning the floor"
 junior_exercise_story = <<~EOL
   In order to make the janitor happy you've got to mop all of the cafeteria floors. To do this the janitor has given you an <i>interstellar mop</i> and <i>galactic bucket</i>. This mop is no ordinary mop, it can clone itself one time and send the clone in a direction perpendicular to that of the original mop and will mirror your movement as long as you turn at 90 degree angles, meaning that you can only create squares. When the two mops collide they'll merge to one mop again and all of the floor areas within the perimeter you created will be mopped automatically.
   <br/><br/>
@@ -42,7 +42,7 @@ junior_exercise_story = <<~EOL
 EOL
 
 junior_challenge = Challenge.create!(title: junior_challenge_title, description: junior_challenge_story,
-                                     constraint: ruby_constraint)
+  constraint: ruby_constraint)
 junior_level = junior_challenge.levels.create!(title: junior_level_title, position: 1)
 junior_exercise = junior_level.exercises.create!(
   title: junior_exercise_title,
@@ -60,21 +60,21 @@ junior_exercise = junior_level.exercises.create!(
   end
   RUBY
 )
-junior_assessment = junior_exercise.assessments.create!(hidden: false, input: '81', leeway: 500)
-junior_assessment = junior_exercise.assessments.create!(hidden: false, input: '-81', leeway: 500)
-junior_assessment = junior_exercise.assessments.create!(hidden: false, input: '27', leeway: 500)
-junior_invitation = Invitation.create!(code: '12345', user: nil, challenge: junior_challenge)
+junior_assessment = junior_exercise.assessments.create!(hidden: false, input: "81", leeway: 500)
+junior_assessment = junior_exercise.assessments.create!(hidden: false, input: "-81", leeway: 500)
+junior_assessment = junior_exercise.assessments.create!(hidden: false, input: "27", leeway: 500)
+junior_invitation = Invitation.create!(code: "12345", user: nil, challenge: junior_challenge)
 
-senior_challenge_title = 'Subjugating the solar system'
+senior_challenge_title = "Subjugating the solar system"
 senior_challenge_story = <<~EOL
   As your seniority grows, so does your lust for power, as a above average developer with an above average god complex, it's only reasonable that you attempt to conquer the galaxy.
   <br/><br/>
   Just like every feature you make you'll probably be done next week or so, so let's get cracking!
 EOL
 
-senior_level_title_1 = 'Terraforming Mars'
+senior_level_title_1 = "Terraforming Mars"
 
-senior_exercise_title_1 = 'Planting seeds'
+senior_exercise_title_1 = "Planting seeds"
 senior_exercise_story_1 = <<~EOL
   You've been tasked with planting seeds on the surface of mars. You've got a lot of seeds to plant, and you don't have a lot of time to plant them.
   <br/><br/>
@@ -94,9 +94,9 @@ senior_exercise_story_1 = <<~EOL
   <b>Input: 15, solution => (15 + 1) => (16 / 2) => (8 / 2) => (4 / 2) => (2 / 2) = 5 commands</b>
 EOL
 
-senior_level_title_2 = 'Alliances on Venus'
+senior_level_title_2 = "Alliances on Venus"
 
-senior_exercise_title_2 = 'Mushroomancer'
+senior_exercise_title_2 = "Mushroomancer"
 senior_exercise_story_2 = <<~EOL
   After making good progress on Mars you're off to Venus. To you surprise, it's already inhabited by giant flytraps.<br/><br/>
   The flytraps are a great ally to have, so it might be best to attempt making an alliance with them, making a good first impression is crucial!<br/><br/>
@@ -114,7 +114,7 @@ senior_exercise_story_2 = <<~EOL
 EOL
 
 senior_challenge = Challenge.create!(title: senior_challenge_title, description: senior_challenge_story,
-                                     constraint: ruby_constraint)
+  constraint: ruby_constraint)
 senior_level_1 = senior_challenge.levels.create!(title: senior_level_title_1, position: 1)
 senior_exercise_1 = senior_level_1.exercises.create!(
   title: senior_exercise_title_1,
@@ -154,8 +154,8 @@ senior_exercise_1 = senior_level_1.exercises.create!(
   end
   RUBY
 )
-senior_assessment_1 = senior_exercise_1.assessments.create!(hidden: false, input: '1', leeway: 500)
-senior_invitation_1 = Invitation.create!(code: '1337', user: nil, challenge: senior_challenge)
+senior_assessment_1 = senior_exercise_1.assessments.create!(hidden: false, input: "1", leeway: 500)
+senior_invitation_1 = Invitation.create!(code: "1337", user: nil, challenge: senior_challenge)
 
 senior_level_2 = senior_challenge.levels.create!(title: senior_level_title_2, position: 2)
 senior_exercise_2 = senior_level_2.exercises.create!(
@@ -177,16 +177,19 @@ senior_exercise_2 = senior_level_2.exercises.create!(
   end
   RUBY
 )
-senior_exercise_1.assessments.create!(hidden: false, input: '15', leeway: 500)
-senior_exercise_1.assessments.create!(hidden: false, input: '-10', leeway: 500)
-senior_exercise_1.assessments.create!(hidden: false, input: '99127998759187778919789873579823598239819890293575813', leeway: 500)
-senior_exercise_1.assessments.create!(hidden: false, input: '29', leeway: 500)
-senior_exercise_2.assessments.create!(hidden: false, input: '[1, 2, 3]', leeway: 500)
-senior_exercise_2.assessments.create!(hidden: false, input: "[#{"812397813278469329687238679235678934678914396783478962438769142367894386794123867923148679143287694321786431287621358795287969876187678987123571530675327685367823867536789358756123502135022135761253785623087523478234987236423784623847236423872387646872346743876".split.join(", ")}]", leeway: 500)
-senior_exercise_2.assessments.create!(hidden: false, input: '[8, 8, 7, 3, 4, 5, 6, 7, 8, 7, 6, 7, 7, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 3, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1, 5, 4, 3, 7]', leeway: 500)
-senior_exercise_2.assessments.create!(hidden: false, input: '[]', leeway: 500)
-senior_exercise_2.assessments.create!(hidden: false, input: '[0]', leeway: 500)
-senior_exercise_2.assessments.create!(hidden: false, input: '[-3, -2, -1]', leeway: 500)
+senior_exercise_1.assessments.create!(hidden: false, input: "15", leeway: 500)
+senior_exercise_1.assessments.create!(hidden: false, input: "-10", leeway: 500)
+senior_exercise_1.assessments.create!(hidden: false, input: "99127998759187778919789873579823598239819890293575813",
+  leeway: 500)
+senior_exercise_1.assessments.create!(hidden: false, input: "29", leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: "[1, 2, 3]", leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false,
+  input: "[#{"812397813278469329687238679235678934678914396783478962438769142367894386794123867923148679143287694321786431287621358795287969876187678987123571530675327685367823867536789358756123502135022135761253785623087523478234987236423784623847236423872387646872346743876".split.join(", ")}]", leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false,
+  input: "[8, 8, 7, 3, 4, 5, 6, 7, 8, 7, 6, 7, 7, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 3, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1, 5, 4, 3, 7]", leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: "[]", leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: "[0]", leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: "[-3, -2, -1]", leeway: 500)
 
 User.create!(
   given_name: "Michael",

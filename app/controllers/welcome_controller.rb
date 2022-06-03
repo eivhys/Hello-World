@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   def show
     @invitation = Invitation.new
     @invitations = current_user.invitations
-                               .includes(
+      .includes(
                                  challenge: [levels: [:exercises]]
                                ).order(created_at: :desc)
   end
@@ -15,10 +15,10 @@ class WelcomeController < ApplicationController
     respond_to do |format|
       if @invitation&.update(user: current_user)
         format.turbo_stream { flash.now[:notice] = "You've accepted the invitation! 🎉" }
-        format.html { redirect_to root_url }
+        format.html { redirect_to(root_url) }
       else
-        format.turbo_stream { flash.now[:alert] = 'Invitatation code is not valid.' }
-        format.html { redirect_to root_url, status: :unprocessable_entity }
+        format.turbo_stream { flash.now[:alert] = "Invitatation code is not valid." }
+        format.html { redirect_to(root_url, status: :unprocessable_entity) }
       end
     end
   end
