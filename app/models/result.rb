@@ -54,10 +54,18 @@ class Result < ApplicationRecord
 
   def benchmark!
     start!
-    candidate_outcome = Assessments::Runner.call(submission.implementation, assessment.input, timeout,
-      Assessments::Runners::Ruby::Evaluator)
-    recruiter_outcome = Assessments::Runner.call(exercise.implementation, assessment.input, timeout,
-      Assessments::Runners::Ruby::Evaluator)
+    candidate_outcome = Assessments::Runner.call(
+      submission.implementation,
+      assessment.input,
+      Assessments::Runners::Ruby::Evaluator,
+      timeout,
+    )
+    recruiter_outcome = Assessments::Runner.call(
+      exercise.implementation,
+      assessment.input,
+      Assessments::Runners::Ruby::Evaluator,
+      timeout,
+    )
     finish!(
       passed: acceptable_solution?(candidate_outcome, recruiter_outcome),
       result: candidate_outcome.result,

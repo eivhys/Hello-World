@@ -18,7 +18,7 @@ module Assessments
       @evaluator_class.call(@implementation, @input, @timeout)
     end
 
-    def initialize(implementation, input, timeout = 10, evaluator_class)
+    def initialize(implementation, input, evaluator_class, timeout = 10)
       @implementation = implementation
       @input = input
       @timeout = timeout

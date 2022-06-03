@@ -12,16 +12,23 @@ puts "== Running seeds.rb \u{1F331} =="
 
 ruby_constraint = Constraint.create(
   title: "Ruby 3.1.1",
-  description: "You will be using ruby 3.1.1, use of IO like the 'File' class or 'puts' method will cause the test to fail."
+  description: <<~EOL
+    You will be using ruby 3.1.1, use of IO like the 'File' class or 'puts' method will cause the test to fail.
+  EOL
 )
 
 junior_challenge_title = "Commander Nibble's Evil Empire"
 junior_challenge_story = <<~EOL
-  The evil commander Nibble is planning to launch an attack on the happy sheep planet, home of the happiest sheep in the entire galaxy! Your mission is to infiltrate commander Nibbles' evil base on Würst planet, the worst planet in the universe.
+  The evil commander Nibble is planning to launch an attack on the happy sheep planet, home of the happiest sheep in the entire galaxy!
+  Your mission is to infiltrate commander Nibbles' evil base on Würst planet, the worst planet in the universe.
   <br/><br/>
-  In order to get past the planet's magnet shields, which will shove away anything magnetic, you've been thrown off from orbit and somehow you stuck the landing. Without your raygun and fancy-schmancy space tech, you'll have to improvise.
+  In order to get past the planet's magnet shields, which will shove away anything magnetic, you've been thrown off from orbit and somehow you stuck the landing.
+  Without your raygun and fancy-schmancy space tech, you'll have to improvise.
   <br/><br/>
-  You find yourself right next to the Evil HQ™️ and in order to get inside the base you climb through the ventilation. Once you're out you hear a voice. "Lackey! Where have you been? You're supposed to scrub the cafeteria floors!", an angry voice said. It was John, the janitor, he gives you a mop and sends you to the cafeteria in order to clean the floor. This is where your mission begins.
+  You find yourself right next to the Evil HQ™️ and in order to get inside the base you climb through the ventilation. Once you're out you hear a voice.
+  "Lackey! Where have you been? You're supposed to scrub the cafeteria floors!", an angry voice said.
+  It was John, the janitor, he gives you a mop and sends you to the cafeteria in order to clean the floor.
+  This is where your mission begins.
   <br/><br/>
   Good luck!
 EOL
@@ -30,9 +37,13 @@ junior_level_title = "Infiltrating the ranks"
 
 junior_exercise_title = "Cleaning the floor"
 junior_exercise_story = <<~EOL
-  In order to make the janitor happy you've got to mop all of the cafeteria floors. To do this the janitor has given you an <i>interstellar mop</i> and <i>galactic bucket</i>. This mop is no ordinary mop, it can clone itself one time and send the clone in a direction perpendicular to that of the original mop and will mirror your movement as long as you turn at 90 degree angles, meaning that you can only create squares. When the two mops collide they'll merge to one mop again and all of the floor areas within the perimeter you created will be mopped automatically.
+  In order to make the janitor happy you've got to mop all of the cafeteria floors. To do this the janitor has given you an <i>interstellar mop</i> and <i>galactic bucket</i>.
+    This mop is no ordinary mop, it can clone itself one time and send the clone in a direction perpendicular to that of the original mop and will mirror your movement as
+    long as you turn at 90 degree angles, meaning that you can only create squares. When the two mops collide they'll merge to
+    one mop again and all of the floor areas within the perimeter you created will be mopped automatically.
   <br/><br/>
-  Create a method solution that takes an integer representing the area of the cafeteria floors in square meters as its input. It should return the minimum amount of times you have to use your interstellar mop in order to get the floors clean, and how many square meters each cleans.
+  Create a method solution that takes an integer representing the area of the cafeteria floors in square meters as its input.
+  It should return the minimum amount of times you have to use your interstellar mop in order to get the floors clean, and how many square meters each cleans.
   <br/><br/>
   Example 1:<br/>
   <b>Input: 12, solution => [9, 1, 1, 1]</b>
@@ -60,10 +71,10 @@ junior_exercise = junior_level.exercises.create!(
   end
   RUBY
 )
-junior_assessment = junior_exercise.assessments.create!(hidden: false, input: "81", leeway: 500)
-junior_assessment = junior_exercise.assessments.create!(hidden: false, input: "-81", leeway: 500)
-junior_assessment = junior_exercise.assessments.create!(hidden: false, input: "27", leeway: 500)
-junior_invitation = Invitation.create!(code: "12345", user: nil, challenge: junior_challenge)
+junior_exercise.assessments.create!(hidden: false, input: "81", leeway: 500)
+junior_exercise.assessments.create!(hidden: false, input: "-81", leeway: 500)
+junior_exercise.assessments.create!(hidden: false, input: "27", leeway: 500)
+Invitation.create!(code: "12345", user: nil, challenge: junior_challenge)
 
 senior_challenge_title = "Subjugating the solar system"
 senior_challenge_story = <<~EOL
@@ -154,8 +165,9 @@ senior_exercise_1 = senior_level_1.exercises.create!(
   end
   RUBY
 )
-senior_assessment_1 = senior_exercise_1.assessments.create!(hidden: false, input: "1", leeway: 500)
-senior_invitation_1 = Invitation.create!(code: "1337", user: nil, challenge: senior_challenge)
+
+senior_exercise_1.assessments.create!(hidden: false, input: "1", leeway: 500)
+Invitation.create!(code: "1337", user: nil, challenge: senior_challenge)
 
 senior_level_2 = senior_challenge.levels.create!(title: senior_level_title_2, position: 2)
 senior_exercise_2 = senior_level_2.exercises.create!(
@@ -184,9 +196,9 @@ senior_exercise_1.assessments.create!(hidden: false, input: "9912799875918777891
 senior_exercise_1.assessments.create!(hidden: false, input: "29", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[1, 2, 3]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false,
-  input: "[#{"812397813278469329687238679235678934678914396783478962438769142367894386794123867923148679143287694321786431287621358795287969876187678987123571530675327685367823867536789358756123502135022135761253785623087523478234987236423784623847236423872387646872346743876".split.join(", ")}]", leeway: 500)
+  input: "[#{"812397834987236423784623847236423872387646872346743876".split.join(", ")}]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false,
-  input: "[8, 8, 7, 3, 4, 5, 6, 7, 8, 7, 6, 7, 7, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 3, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1, 5, 4, 3, 7]", leeway: 500)
+  input: "[8, 8, 7, 3, 4, 5, 6, 7, 8, 7, 6, 7, 7, 7, 6, 5, 4, 3, 2, 1, 1,, 2, 1, 5, 4, 3, 7]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[0]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[-3, -2, -1]", leeway: 500)
