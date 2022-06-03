@@ -19,10 +19,14 @@
 #  external_id_source        :string
 #  failed_attempts           :integer          default(0), not null
 #  family_name               :string
+#  github_handle             :string
 #  given_name                :string
 #  last_sign_in_at           :datetime
 #  last_sign_in_ip           :string
+#  linked_in_handle          :string
 #  locked_at                 :datetime
+#  onboarded                 :boolean          default(FALSE)
+#  open_for_offers           :boolean          default(FALSE)
 #  remember_created_at       :datetime
 #  reset_password_sent_at    :datetime
 #  reset_password_token      :string
@@ -50,6 +54,8 @@ class User < ApplicationRecord
   has_many :challenges, through: :invitations
   has_many :exercises, through: :challenges
   has_many :submissions, dependent: :destroy
+
+  validates :email, presence: true
 
   def full_name
     "#{given_name} #{family_name}"

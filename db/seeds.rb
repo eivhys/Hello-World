@@ -102,15 +102,15 @@ senior_exercise_story_2 = <<~EOL
   The flytraps are a great ally to have, so it might be best to attempt making an alliance with them, making a good first impression is crucial!<br/><br/>
   The venusian flytraps are very thankful for your effort for plantkind after terraforming Mars, so they've provided you with a task to see if you're worthy.<br/><br/>
   You are told there's a war raging between the flytraps and the mushroom empire. As the flytraps are carnivores they are incapable of eating the mushrooms, which is the quickest way to dispose them, this is where you come in handy.<br/><br/>
-  The task is simple, eat as many mushrooms as possible in order to lead the flytraps to victory, but be ware, eating a number of mushrooms that's not divisible by 3 will send you to another planet, foiling your chances of making alliances on the planet you're currently on, don't mess it up!
+  The task is simple, eat as many mushrooms as possible in order to lead the flytraps to victory, but be ware, eating a number of mushrooms that's not divisible by 3 will, figuratively, send you to another planet, foiling your chances of making alliances on the planet you're currently on, don't mess it up!
   <br/><br/>
   Create a method solution that takes a list of integers, representing a number of mushrooms in a legion, as its input. It should return the maximum number of mushrooms you are able to eat as a string. A number can only be used as many times as it appears in the input, if there is no solution return "Impossible".
   <br/><br/>
   Example 1:<br/>
-  <b>Input: [3, 2, 1], solution => 321 </b>
+  <b>Input: [3, 2, 1], solution => "321" </b>
   <br/><br/>
   Example 2:<br/>
-  <b>Input: [6, 3, 2, 9, 7, 1], solution => 97632 </b>
+  <b>Input: [6, 3, 2, 9, 7, 1], solution => "97632" </b>
 EOL
 
 senior_challenge = Challenge.create!(title: senior_challenge_title, description: senior_challenge_story,
@@ -187,3 +187,21 @@ senior_exercise_2.assessments.create!(hidden: false, input: '[8, 8, 7, 3, 4, 5, 
 senior_exercise_2.assessments.create!(hidden: false, input: '[]', leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: '[0]', leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: '[-3, -2, -1]', leeway: 500)
+
+User.create!(
+  given_name: "Michael",
+  family_name: "Baiteland",
+  display_name: "McBaith",
+  email: "michael@test.com",
+  date_of_birth: Date.new(1993, 11, 28),
+  phone_number: "555-555-5555",
+)
+
+User.create!(
+  given_name: "Håvard",
+  family_name: "Solbær",
+  display_name: "Mogens",
+  email: "mogens@test.dk",
+  date_of_birth: Date.new(1994, 2, 15),
+  phone_number: "555-555-5555",
+)

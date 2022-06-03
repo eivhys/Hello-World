@@ -163,6 +163,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_124346) do
     t.boolean "admin", default: false
     t.boolean "anonymous_on_leaderboards", default: false
     t.string "display_name"
+    t.boolean "open_for_offers", default: false
+    t.boolean "onboarded", default: false
+    t.string "linked_in_handle"
+    t.string "github_handle"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

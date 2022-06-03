@@ -98,3 +98,7 @@ gem 'database_cleaner-active_record', '~> 2.0'
 gem 'devise', '~> 4.8'
 gem 'factory_bot', '~> 6.2'
 gem 'simple_form'
+
+gem "wicked", "~> 1.4"
+
+gem "aasm", "~> 5.2"

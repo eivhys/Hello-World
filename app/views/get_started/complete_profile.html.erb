@@ -1,0 +1,12 @@
+<div class="">
+    <p>Complete your profile<br/><br/></p>
+    <%= simple_form_for @user, url: wizard_path(:complete_profile), method: :put, local: true do |f| %>
+      <div class="border-t border-base-300">
+        <%= f.error_notification %>
+        <%= f.input :display_name, label: "Alias" %>
+        <%= f.input :given_name %>
+        <%= f.input :family_name %>
+        <%= f.button :submit, "GET STARTED", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+</div>
