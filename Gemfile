@@ -75,6 +75,9 @@ group :development do
   gem 'bullet'
   gem 'rubocop-rails', '~> 2.14'
   gem "rubocop-shopify"
+  gem "reek"
+  gem "ruby_audit", require: false
+
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end

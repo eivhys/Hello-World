@@ -44,9 +44,25 @@ EOL
 junior_challenge = Challenge.create!(title: junior_challenge_title, description: junior_challenge_story,
                                      constraint: ruby_constraint)
 junior_level = junior_challenge.levels.create!(title: junior_level_title, position: 1)
-junior_exercise = junior_level.exercises.create!(title: junior_exercise_title, description: junior_exercise_story,
-                                                 position: 1, unlock_criteria: 0, implementation: 'def solution(*); 1; end')
-junior_assessment = junior_exercise.assessments.create!(hidden: false, input: '1', leeway: 500)
+junior_exercise = junior_level.exercises.create!(
+  title: junior_exercise_title,
+  description: junior_exercise_story,
+  position: 1,
+  unlock_criteria: 0,
+  implementation: <<-RUBY
+  def solution(area)
+    (1..((area**0.5).to_i)).to_a.reverse.inject([]) do |result, n|
+      while (result.sum + n**2) <= area
+        result << n**2
+      end
+      result
+    end
+  end
+  RUBY
+)
+junior_assessment = junior_exercise.assessments.create!(hidden: false, input: '81', leeway: 500)
+junior_assessment = junior_exercise.assessments.create!(hidden: false, input: '-81', leeway: 500)
+junior_assessment = junior_exercise.assessments.create!(hidden: false, input: '27', leeway: 500)
 junior_invitation = Invitation.create!(code: '12345', user: nil, challenge: junior_challenge)
 
 senior_challenge_title = 'Subjugating the solar system'
@@ -78,14 +94,14 @@ senior_exercise_story_1 = <<~EOL
   <b>Input: 15, solution => (15 + 1) => (16 / 2) => (8 / 2) => (4 / 2) => (2 / 2) = 5 commands</b>
 EOL
 
-senior_level_title_2 = 'Becoming a venusian'
+senior_level_title_2 = 'Alliances on Venus'
 
-senior_exercise_title_2 = 'Cleaning the surface'
+senior_exercise_title_2 = 'Mushroomancer'
 senior_exercise_story_2 = <<~EOL
-  After making good progress on Mars you're off to Venus. To you surprise, it's already inhabited by giant flytraps, I guess that's where they originate from.<br/><br/>
-  They are quite scary and dangerous, so it might be best to attempt making an alliance with them, making a good first impression is crucial!<br/><br/>
-  The venusian flytraps are very intelligent and thankful for your effort for the plant kingdom on Mars, so they'll provide you with a task to see if you're worthy of their trust.<br/><br/>
-  Appearently there's a war raging between the venusian flytraps and the venusian mushroom empire. As the flytraps are carnivores they are incapable of eating the mushrooms, which is the quickest way to dispose them, this is where you come in handy.<br/><br/>
+  After making good progress on Mars you're off to Venus. To you surprise, it's already inhabited by giant flytraps.<br/><br/>
+  The flytraps are a great ally to have, so it might be best to attempt making an alliance with them, making a good first impression is crucial!<br/><br/>
+  The venusian flytraps are very thankful for your effort for plantkind after terraforming Mars, so they've provided you with a task to see if you're worthy.<br/><br/>
+  You are told there's a war raging between the flytraps and the mushroom empire. As the flytraps are carnivores they are incapable of eating the mushrooms, which is the quickest way to dispose them, this is where you come in handy.<br/><br/>
   The task is simple, eat as many mushrooms as possible in order to lead the flytraps to victory, but be ware, eating a number of mushrooms that's not divisible by 3 will send you to another planet, foiling your chances of making alliances on the planet you're currently on, don't mess it up!
   <br/><br/>
   Create a method solution that takes a list of integers, representing a number of mushrooms in a legion, as its input. It should return the maximum number of mushrooms you are able to eat as a string. A number can only be used as many times as it appears in the input, if there is no solution return "Impossible".
@@ -94,18 +110,80 @@ senior_exercise_story_2 = <<~EOL
   <b>Input: [3, 2, 1], solution => 321 </b>
   <br/><br/>
   Example 2:<br/>
-  <b>Input: [6, 3, 2, 9, 7], solution => 9762 </b>
+  <b>Input: [6, 3, 2, 9, 7, 1], solution => 97632 </b>
 EOL
 
 senior_challenge = Challenge.create!(title: senior_challenge_title, description: senior_challenge_story,
                                      constraint: ruby_constraint)
 senior_level_1 = senior_challenge.levels.create!(title: senior_level_title_1, position: 1)
-senior_exercise_1 = senior_level_1.exercises.create!(title: senior_exercise_title_1,
-                                                     description: senior_exercise_story_1, position: 1, unlock_criteria: 0, implementation: 'def solution(*); 1; end')
+senior_exercise_1 = senior_level_1.exercises.create!(
+  title: senior_exercise_title_1,
+  description: senior_exercise_story_1,
+  position: 1,
+  unlock_criteria: 0,
+  implementation: <<-RUBY
+  def solution(n)
+    result = 0
+
+    while n != 1
+      if n.even?
+        n /= 2
+      else
+        if divisor_count(n + 1) > divisor_count(n - 1)
+          n += 1
+        else
+          n -= 1
+        end
+      end
+
+      result += 1
+    end
+
+    result
+  end
+
+  def divisor_count(n)
+    result = 0
+
+    while n.even?
+      n /= 2
+      result += 1
+    end
+
+    result
+  end
+  RUBY
+)
 senior_assessment_1 = senior_exercise_1.assessments.create!(hidden: false, input: '1', leeway: 500)
 senior_invitation_1 = Invitation.create!(code: '1337', user: nil, challenge: senior_challenge)
 
-senior_level_2 = senior_challenge.levels.create!(title: senior_level_title_2, position: 1)
-senior_exercise_2 = senior_level_2.exercises.create!(title: senior_exercise_title_2,
-                                                     description: senior_exercise_story_2, position: 1, unlock_criteria: 0, implementation: 'def solution(*); 1; end')
-senior_assessment_2 = senior_exercise_2.assessments.create!(hidden: false, input: '1', leeway: 500)
+senior_level_2 = senior_challenge.levels.create!(title: senior_level_title_2, position: 2)
+senior_exercise_2 = senior_level_2.exercises.create!(
+  title: senior_exercise_title_2,
+  description: senior_exercise_story_2,
+  position: 1,
+  unlock_criteria: 0,
+  implementation: <<-RUBY
+  def solution(shrooms)
+    1.upto(shrooms.size).to_a.reverse.each do |size|
+      shrooms.combination(size).each do |combination|
+        if combination.sum.modulo(3) == 0
+          return combination.sort.reverse.join
+        end
+      end
+    end
+
+    'Impossible'
+  end
+  RUBY
+)
+senior_exercise_1.assessments.create!(hidden: false, input: '15', leeway: 500)
+senior_exercise_1.assessments.create!(hidden: false, input: '-10', leeway: 500)
+senior_exercise_1.assessments.create!(hidden: false, input: '99127998759187778919789873579823598239819890293575813', leeway: 500)
+senior_exercise_1.assessments.create!(hidden: false, input: '29', leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: '[1, 2, 3]', leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: "[#{"812397813278469329687238679235678934678914396783478962438769142367894386794123867923148679143287694321786431287621358795287969876187678987123571530675327685367823867536789358756123502135022135761253785623087523478234987236423784623847236423872387646872346743876".split.join(", ")}]", leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: '[8, 8, 7, 3, 4, 5, 6, 7, 8, 7, 6, 7, 7, 7, 6, 5, 4, 3, 2, 1, 1, 2, 3, 4, 3, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 9, 8, 7, 6, 5, 4, 3, 2, 1, 5, 4, 3, 7]', leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: '[]', leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: '[0]', leeway: 500)
+senior_exercise_2.assessments.create!(hidden: false, input: '[-3, -2, -1]', leeway: 500)

@@ -87,7 +87,7 @@ class Result < ApplicationRecord
 
   def finish!(result:, time_spent:, passed: false)
     update!(
-      passed:,
+      passed: passed,
       answer: result,
       time_spent:,
       state: passed ? Result::State::PASSED : Result::State::FAILED

@@ -22,7 +22,7 @@
         <% else %>
           ├──
         <% end %>
-        <%= link_to "#{exercise.title} #{"✅" if current_user.passed_exercise?(exercise)}", exercise, class: "link", data: { turbo: false } %>
+        <%= link_to "#{exercise.title}", exercise, class: "link", data: { turbo: false } %>
       <% end %>
       <br/>
     <% end %>

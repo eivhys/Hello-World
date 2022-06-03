@@ -24,7 +24,7 @@
       <%= render "layouts/flash" %>
     </div>
     <!--
-    _____     _ _        _ _ _         _   _
+     _____     _ _        _ _ _         _   _
     |  |  |___| | |___   | | | |___ ___| |_| |
     |     | -_| | | . |  | | | | . |  _| | . |
     |__|__|___|_|_|___|  |_____|___|_| |_|___|
@@ -32,16 +32,12 @@
     Hello world! You found me! Take this invitation code and share it with your friends!
     <%= SecureRandom.hex %> // TODO: Replace with an actual invitation code!
     -->
-    <div class="container mx-auto px-4 flex-1">
-      <% if current_user %>
-        <%= render "layouts/header" %>
-      <% end %>
+    <div class="container mx-auto px-4 flex-1 mb-3">
+      <%= render "layouts/header" %>
     </div>
-    <br/>
-    <main class="container mx-auto px-5 flex">
+    <main class="container mx-auto px-5 flex mb-3" style="min-height: calc(100vh - 148px)">
       <%= yield %>
     </main>
-    <br/>
     <%= render "layouts/footer" %>
   </body>
 </html>

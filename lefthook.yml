@@ -1,4 +1,6 @@
 pre-push: # githook name
   commands: # list of commands
+    bundle-audit:
+      run: bin/bundle exec bundle audit check --update
     style-audit: # command name
-      run: rubocop -A && rubocop # command for execution
+      run: bin/bundle exec rubocop -A && bin/bundle exec rubocop # command for execution

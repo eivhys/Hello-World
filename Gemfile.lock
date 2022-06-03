@@ -143,6 +143,9 @@ GEM
     bullet (7.0.1)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capybara (3.37.1)
       addressable
       matrix
@@ -214,6 +217,7 @@ GEM
     kredis (1.2.0)
       activesupport (>= 6.0.0)
       redis (~> 4.2)
+    kwalify (0.7.2)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -290,6 +294,10 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     redis (4.6.0)
+    reek (6.1.1)
+      kwalify (~> 0.7.0)
+      parser (~> 3.1.0)
+      rainbow (>= 2.0, < 4.0)
     regexp_parser (2.4.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -312,9 +320,13 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
+    rubocop-shopify (2.6.0)
+      rubocop (~> 1.29)
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
+    ruby_audit (2.1.0)
+      bundler-audit (~> 0.9.0)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -400,12 +412,15 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 7.0.3)
   redis (~> 4.0)
+  reek
   rspec-core!
   rspec-expectations!
   rspec-mocks!
   rspec-rails!
   rspec-support!
   rubocop-rails (~> 2.14)
+  rubocop-shopify
+  ruby_audit
   selenium-webdriver
   simple_form
   sprockets-rails
