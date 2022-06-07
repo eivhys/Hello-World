@@ -15,6 +15,7 @@
               <span class="badge">New</span>
             </a>
           </li>
+          <li><%= link_to "Enter new code", get_started_path(:enter_invitation_code) %></li>
           <li><a>Settings</a></li>
           <li><%= button_to "Sign out", destroy_user_session_path, method: :delete  %></li>
         </ul>

@@ -137,7 +137,7 @@ senior_exercise_1 = senior_level_1.exercises.create!(
     result = 0
 
     while n != 1
-      if n.even?
+      if n % 2 == 0
         n /= 2
       else
         if divisor_count(n + 1) > divisor_count(n - 1)
@@ -156,7 +156,7 @@ senior_exercise_1 = senior_level_1.exercises.create!(
   def divisor_count(n)
     result = 0
 
-    while n.even?
+    while n % 2 == 0
       n /= 2
       result += 1
     end
@@ -205,19 +205,19 @@ senior_exercise_2.assessments.create!(hidden: false, input: "[-3, -2, -1]", leew
 
 # When in need of testers, uncomment this
 # User.create!(
-  # given_name: "Michael",
-  # family_name: "Baiteland",
-  # display_name: "McBaith",
-  # email: "michael@test.com",
-  # date_of_birth: Date.new(1993, 11, 28),
-  # phone_number: "555-555-5555",
+# given_name: "Michael",
+# family_name: "Baiteland",
+# display_name: "McBaith",
+# email: "michael@test.com",
+# date_of_birth: Date.new(1993, 11, 28),
+# phone_number: "555-555-5555",
 # )
 
 # User.create!(
-  # given_name: "Håvard",
-  # family_name: "Solbær",
-  # display_name: "Mogens",
-  # email: "mogens@test.dk",
-  # date_of_birth: Date.new(1994, 2, 15),
-  # phone_number: "555-555-5555",
+# given_name: "Håvard",
+# family_name: "Solbær",
+# display_name: "Mogens",
+# email: "mogens@test.dk",
+# date_of_birth: Date.new(1994, 2, 15),
+# phone_number: "555-555-5555",
 # )

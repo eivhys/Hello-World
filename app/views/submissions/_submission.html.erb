@@ -1,9 +1,25 @@
-<div class="stats shadow">
-  <div class="stat">
-    <div class="stat-title"><%= submission %></div>
-    <div class="stat-value">
-      <a class="link">Passed: <%= submission.results.filter(&:passed?).count %>/<%= submission.results.count %></a>
+<%= turbo_frame_tag submission do %>
+  <div class="border border-base-300 bg-base-100 rounded-box">
+    <div class="flex text-xl font-medium items-center">
+      Submission assessment <%= submission.created_at %>
     </div>
-    <div class="stat-desc"><%= time_ago_in_words(submission.created_at) %> ago</div>
+    <div>
+      <% submission.results.each do |result| %>
+        <%= turbo_stream_from :result %>
+        <%= turbo_frame_tag :result do%>
+          <%= render result %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
+
+<!--div class="stats shadow">
+  <div class="stat">
+    <div class="stat-title"><%#= submission %></div>
+    <div class="stat-value">
+      <a class="link">Passed: <%#= submission.results.filter(&:passed?).count %>/<%= submission.results.count %></a>
+    </div>
+    <div class="stat-desc"><%#= time_ago_in_words(submission.created_at) %> ago</div>
+  </div>
+</div-->

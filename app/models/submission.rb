@@ -41,6 +41,9 @@ class Submission < ApplicationRecord
 
   before_create -> { implementation.chomp! }
 
+  after_create_commit { broadcast_append_to :submission }
+  after_update_commit { broadcast_append_to :submission }
+
   def current_highscore?
     Submission.where(
       exercise: exercise,
@@ -77,6 +80,6 @@ class Submission < ApplicationRecord
   private
 
   def add_highscore_to_leaderboard
-    exercise.leaderboard.update(user_id => score)
+    # exercise.leaderboard.update(user_id => score)
   end
 end

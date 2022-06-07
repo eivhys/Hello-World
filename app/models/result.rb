@@ -47,8 +47,8 @@ class Result < ApplicationRecord
   scope :passed, -> { where(state: Result::State::PASSED) }
   scope :failed, -> { where(state: Result::State::FAILED) }
 
-  after_create_commit -> { broadcast_prepend_to("results") }
-  after_update_commit -> { broadcast_replace_to("results") }
+  after_create_commit { broadcast_prepend_to :result }
+  after_update_commit { broadcast_replace_to :result }
 
   delegate :hidden?, :timeout, to: :assessment
 
@@ -87,6 +87,10 @@ class Result < ApplicationRecord
 
   def pending?
     state == Result::State::PENDING
+  end
+
+  def finished?
+    failed? || passed?
   end
 
   def start!

@@ -20,8 +20,8 @@
   <% end %>
   <br/>
 
-  <%= turbo_stream_from "results" %>
-  <%= turbo_frame_tag "results" do %>
-    <%= render [] %>
+  <%= turbo_stream_from "submission" %>
+  <%= turbo_frame_tag "submission" do %>
+    <%= render current_user.submissions.where(exercise: @exercise)&.last unless current_user.submissions.where(exercise: @exercise).count.zero? %>
   <% end %>
 </div>
