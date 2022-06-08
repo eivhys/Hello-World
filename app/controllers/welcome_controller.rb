@@ -3,8 +3,8 @@
 class WelcomeController < ApplicationController
   def show
     @invitation = Invitation.new
-    @invitations = current_user.invitations
-      .includes(
+    @invitations = current_user.claimed_invitations
+                               .includes(
                                  challenge: [levels: [:exercises]]
                                ).order(created_at: :desc)
   end

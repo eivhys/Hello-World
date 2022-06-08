@@ -51,8 +51,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
 
-  has_many :invitations, dependent: :destroy
-  has_many :challenges, through: :invitations
+  has_many :claimed_invitations, dependent: :destroy, class_name: Invitation.name
+  has_many :challenges, through: :claimed_invitations
   has_many :exercises, through: :challenges
   has_many :submissions, dependent: :destroy
 

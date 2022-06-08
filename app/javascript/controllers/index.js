@@ -12,3 +12,6 @@ application.register("monaco", MonacoController)
 
 import RemovalsController from "./removals_controller.js"
 application.register("removals", RemovalsController)
+
+import ConfettiController from "./confetti_controller.js"
+application.register("confetti", ConfettiController)

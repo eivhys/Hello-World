@@ -18,6 +18,7 @@ class GetStartedController < ApplicationController
         flash[:alert] = "Invitation code is not valid"
       else
         @invitation.assign_attributes(user: @user)
+        flash[:confetti] = "Invitation accepted 🎉"
       end
       render_wizard(@invitation, options)
     when :complete_profile
