@@ -5,6 +5,7 @@
 # Table name: challenges
 #
 #  id            :uuid             not null, primary key
+#  open          :boolean          default(FALSE), not null
 #  title         :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
