@@ -1,7 +1,7 @@
 <div class="float-right w-full mb-3">
   <%= turbo_frame_tag invitation do %>
     <span>
-      / <%= link_to invitation.challenge.title, invitation.challenge, class: "link", data: { turbo: false }  %>
+      / <%= link_to "#{invitation.challenge.title} (#{user.passed_exercises.joins(:challenge).where(challenges: invitation.challenge).count}/#{invitation.challenge.exercises.count})", invitation.challenge, class: "link", data: { turbo: false }  %>
     </span>
     <br/>
     <% invitation.challenge.levels.each.with_index(1) do |level, level_index| %>
@@ -10,7 +10,7 @@
       <% else %>
         ├──
       <% end %>
-      <%= level_index %>. <%= level.title %><br/>
+      <%= level_index %>. <%= level.title %> (<%= user.passed_exercises.where(level: level).count %>/<%= level.exercises.count %>)<br/>
       <% level.exercises.each.with_index(1) do |exercise, exercise_index| %>
         <% if level_index == level.exercises.count && !(level.exercises.count == exercise_index) || level_index < invitation.challenge.levels.count %>
           │&nbsp;&nbsp;
@@ -22,7 +22,7 @@
         <% else %>
           ├──
         <% end %>
-        <%= link_to "#{exercise.title}", exercise, class: "link", data: { turbo: false } %>
+        <%= link_to "#{exercise.title}#{ " ✅" if user&.passed_exercise?(exercise) }", exercise, class: "link", data: { turbo: false } %>
       <% end %>
       <br/>
     <% end %>

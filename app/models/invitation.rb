@@ -38,7 +38,7 @@ class Invitation < ApplicationRecord
     broadcast_prepend_to(
       "invitations",
       partial: "invitations/invitation",
-      locals: { invitation: self },
+      locals: { invitation: self, user: user },
       target: "invitations"
     )
   }

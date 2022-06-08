@@ -1,10 +1,9 @@
-<h2 class="font-bold text-xl">Level <%= level.position %>: <%= level.title %></h2>
+<h2 class="font-bold text-xl">Level <%= level.position %>: <%= level.title %> (<%= current_user.passed_exercises.where(level: level).count %>/<%= level.exercises.count %>)</h2>
 <ol>
   <% level.exercises.each do |exercise| %>
     <li>
-      - <%= link_to exercise.title, exercise, class: "link" %>
+      - <%= link_to "#{exercise.title}#{ " ✅" if current_user.passed_exercise?(exercise)}", exercise, class: "link" %>
         <br/>
     </li>
   <% end %>
 </ol>
-

@@ -16,11 +16,15 @@ class GetStartedController < ApplicationController
       if @invitation.nil?
         options[:status] = :unprocessable_entity
         flash[:alert] = "Invitation code is not valid"
+      elsif @user.onboarded?
+        @invitation.update(user: @user)
+        flash[:confetti] = "Invitation accepted 🎉"
+        redirect_to(root_path)
       else
         @invitation.assign_attributes(user: @user)
         flash[:confetti] = "Invitation accepted 🎉"
+        render_wizard(@invitation, options)
       end
-      render_wizard(@invitation, options)
     when :complete_profile
       if @user.onboarded?
         redirect_to(root_path)
