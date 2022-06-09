@@ -92,14 +92,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_124346) do
 
   create_table "invitations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "code"
-    t.uuid "user_id"
+    t.datetime "claimed_at"
+    t.float "validity_time_in_seconds"
+    t.uuid "claimer_id"
     t.uuid "challenge_id", null: false
     t.uuid "issuer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_invitations_on_challenge_id"
+    t.index ["claimer_id"], name: "index_invitations_on_claimer_id"
     t.index ["issuer_id"], name: "index_invitations_on_issuer_id"
-    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "levels", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -181,7 +183,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_124346) do
   add_foreign_key "challenges", "constraints"
   add_foreign_key "exercises", "levels"
   add_foreign_key "invitations", "challenges"
-  add_foreign_key "invitations", "users"
+  add_foreign_key "invitations", "users", column: "claimer_id"
   add_foreign_key "invitations", "users", column: "issuer_id"
   add_foreign_key "levels", "challenges"
   add_foreign_key "results", "assessments"

@@ -51,7 +51,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
 
-  has_many :claimed_invitations, dependent: :destroy, class_name: Invitation.name
+  has_many :claimed_invitations, dependent: :destroy, foreign_key: :claimer_id, class_name: Invitation.name
   has_many :challenges, through: :claimed_invitations
   has_many :exercises, through: :challenges
   has_many :submissions, dependent: :destroy
@@ -69,7 +69,6 @@ class User < ApplicationRecord
       .where("submissions.user_id = ? AND submissions.passed = TRUE", id)
       .group("challenges.id", "exercises.id", "submissions.id", "levels.id")
       .having("COUNT(DISTINCT exercises.*) <= COUNT(DISTINCT submissions.exercise_id)")
-      #.having("COUNT(DISTINCT exercises.*) <= COUNT(DISTINCT submissions.exercise_id)")
   end
 
   def passed_exercises

@@ -8,7 +8,13 @@ class ApplicationController < ActionController::Base
 
   def onboard_user
     if current_user
-      redirect_to(get_started_path(:enter_invitation_code)) unless current_user.onboarded?
+      unless current_user.onboarded?
+        if current_user.claimed_invitations.count.zero?
+          redirect_to(get_started_path(:enter_invitation_code))
+        else
+          redirect_to(get_started_path(:complete_profile))
+        end
+      end
     end
   end
 end

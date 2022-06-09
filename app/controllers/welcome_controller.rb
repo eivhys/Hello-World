@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
     @invitation = Invitation.unclaimed.find_by(code: invitation_params[:code])
 
     respond_to do |format|
-      if @invitation&.update(user: current_user)
+      if @invitation&.update(claimer: current_user)
         format.turbo_stream { flash.now[:notice] = "You've accepted the invitation! 🎉" }
         format.html { redirect_to(root_url) }
       else

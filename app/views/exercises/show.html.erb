@@ -16,12 +16,14 @@
       data-action="change->monaco#onChange keyup->monaco#onChange"
     >
     </div>
-    <%= f.button :submit, class: "btn-primary" %>
+    <%= f.button :submit, "ASSESS SOLUTION", class: "btn-primary" %>
   <% end %>
   <br/>
 
-  <%= turbo_stream_from "submission" %>
-  <%= turbo_frame_tag "submission" do %>
-    <%= render current_user.submissions.where(exercise: @exercise)&.last unless current_user.submissions.where(exercise: @exercise).count.zero? %>
+  <%= turbo_stream_from :submission %>
+  <%= turbo_frame_tag :submission do %>
+    <% unless current_user.submissions.where(exercise: @exercise).count.zero? %>
+      <%= render [current_user.submissions.where(exercise: @exercise)&.last] %>
+    <% end %>
   <% end %>
 </div>

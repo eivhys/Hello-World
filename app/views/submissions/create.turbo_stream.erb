@@ -1,4 +1,1 @@
-<%= turbo_stream.replace :submission, @submission %>
-<% @submission.results.each do |result| %>
-  <%= turbo_stream.replace :result, result %>
-<% end %>
+<%= turbo_stream.prepend :submission, @submission %>
