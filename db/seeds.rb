@@ -173,7 +173,7 @@ senior_level_2 = senior_challenge.levels.create!(title: senior_level_title_2, po
 senior_exercise_2 = senior_level_2.exercises.create!(
   title: senior_exercise_title_2,
   description: senior_exercise_story_2,
-  position: 1,
+  position: 2,
   unlock_criteria: 0,
   implementation: <<-RUBY
   def solution(shrooms)

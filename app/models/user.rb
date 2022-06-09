@@ -62,17 +62,8 @@ class User < ApplicationRecord
     "#{given_name} #{family_name}"
   end
 
-  def passed_challenges
-    raise NotImplementedError
-    Challenge.unscoped.select("challenges.*, exercises.*, submissions.*")
-      .left_outer_joins(:exercises, :submissions, :levels)
-      .where("submissions.user_id = ? AND submissions.passed = TRUE", id)
-      .group("challenges.id", "exercises.id", "submissions.id", "levels.id")
-      .having("COUNT(DISTINCT exercises.*) <= COUNT(DISTINCT submissions.exercise_id)")
-  end
-
   def passed_exercises
-    Exercise.where(id: passed_submissions.pluck(:exercise_id).uniq)
+    Exercise.where(id: passed_submissions.pluck(:exercise_id))
   end
 
   def passed_submissions

@@ -18,11 +18,11 @@ class GetStartedController < ApplicationController
         flash[:alert] = "Invitation code is not valid"
       elsif @user.onboarded?
         @invitation.update(claimer: @user)
-        flash[:confetti] = "Invitation accepted 🎉"
+        # flash[:confetti] = "Invitation accepted 🎉"
         redirect_to(root_path)
       else
         @invitation.assign_attributes(claimer: @user)
-        flash[:confetti] = "Invitation accepted 🎉"
+        # flash[:confetti] = "Invitation accepted 🎉"
         render_wizard(@invitation, options)
       end
     when :complete_profile
@@ -30,6 +30,7 @@ class GetStartedController < ApplicationController
         redirect_to(root_path)
       else
         @user.assign_attributes(**user_params, onboarded: true)
+        flash[:confetti] = "Welcome! Let's get started 🎉"
         render_wizard(@user)
       end
     else

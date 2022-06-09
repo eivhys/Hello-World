@@ -1,12 +1,12 @@
 <div class="hero">
-    <p>Complete your profile<br/><br/></p>
-    <%= simple_form_for @user, url: wizard_path(:complete_profile), method: :put, local: true do |f| %>
-      <div class="border-t border-base-300">
-        <%= f.error_notification %>
-        <%= f.input :display_name, label: "Alias", input_html: { class: "input-bordered input-sm" } %>
-        <%= f.input :given_name, input_html: { class: "input-bordered input-sm" } %>
-        <%= f.input :family_name, input_html: { class: "input-bordered input-sm" } %>
-        <%= f.button :submit, "GET STARTED", class: "btn btn-primary btn-wide" %>
-      </div>
-    <% end %>
+  <%= simple_form_for @user, url: wizard_path(:complete_profile), method: :put, local: true do |f| %>
+    <div class="border-t border-base-300">
+      <%= f.error_notification %>
+      <%= f.input :display_name, label: "Alias", input_html: { class: "input-bordered input-sm" } %>
+      <%= f.input :given_name, input_html: { class: "input-bordered input-sm" } %>
+      <%= f.input :family_name, input_html: { class: "input-bordered input-sm" } %>
+      <%= f.input :open_for_offers, label: "Are you open for offers?", input_html: { class: "checkbox-sm" } %>
+      <%= f.button :submit, "GET STARTED", class: "btn btn-primary btn-wide" %>
+    </div>
+  <% end %>
 </div>

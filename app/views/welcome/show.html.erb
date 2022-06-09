@@ -3,9 +3,26 @@
   <br/>
   <div class="flex justify-between w-full">
     <div>
+      <br/>
       <%= turbo_frame_tag "invitations" do %>
         <%= render @invitations, user: current_user %>
       <% end %>
+    </div>
+    <div>
+      <p class="font-bold text-4xl">👋 Welcome <%= current_user.given_name %>!</p>
+      <br/>
+      <p>
+        Thank you for signing up to the Hello World challenge 🎉
+        <br/>
+        <br/>
+        On this page you'll find a tree view of the challenges you've got access to. Clicl the leaf nodes in order to be taken directly to the exercise or you can click the root node to see its challenge's details and levels
+        <br/>
+        <br/>
+        You can now start working on your first challenge. Completing all exercises is not mandatory but completing all will put you up on the leaderboard!
+        <br/>
+        <br/>
+        If you have any questions, please contact us at <a href="mailto:hello@world.com" class="link">hello@world.com</a> or see the <a class="link">FAQ</a> for more.
+      </p>
     </div>
   </div>
 </div>
