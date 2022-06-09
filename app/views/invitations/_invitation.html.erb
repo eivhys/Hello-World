@@ -10,7 +10,7 @@
       <% else %>
         ├──
       <% end %>
-      <%= level_index %>. <%= level.title %> (<%= user.passed_exercises.where(level: level).count %>/<%= level.exercises.count %>)<br/>
+      Level <%= level_index %>: <%= level.title %> (<%= user.passed_exercises.where(level: level).count %>/<%= level.exercises.count %>)<br/>
       <% level.exercises.each.with_index(1) do |exercise, exercise_index| %>
         <% if level_index == level.exercises.count && !(level.exercises.count == exercise_index) || level_index < invitation.challenge.levels.count %>
           │&nbsp;&nbsp;
