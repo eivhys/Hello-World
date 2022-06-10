@@ -74,7 +74,7 @@ junior_exercise = junior_level.exercises.create!(
 junior_exercise.assessments.create!(hidden: false, input: "81", leeway: 500)
 junior_exercise.assessments.create!(hidden: false, input: "-81", leeway: 500)
 junior_exercise.assessments.create!(hidden: false, input: "27", leeway: 500)
-Invitation.create!(code: "12345", claimer: nil, challenge: junior_challenge)
+Invitation.create!(code: "12345", claimer: nil, challenge: junior_challenge, validity_time_in_seconds: 1.week.to_i)
 
 senior_challenge_title = "Subjugating the solar system"
 senior_challenge_story = <<~EOL
@@ -167,7 +167,7 @@ senior_exercise_1 = senior_level_1.exercises.create!(
 )
 
 senior_exercise_1.assessments.create!(hidden: false, input: "1", leeway: 500)
-Invitation.create!(code: "1337", claimer: nil, challenge: senior_challenge)
+Invitation.create!(code: "1337", claimer: nil, challenge: senior_challenge, validity_time_in_seconds: 2.weeks.to_i)
 
 senior_level_2 = senior_challenge.levels.create!(title: senior_level_title_2, position: 2)
 senior_exercise_2 = senior_level_2.exercises.create!(

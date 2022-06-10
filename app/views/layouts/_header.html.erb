@@ -4,6 +4,7 @@
   </div>
   <div class="flex-none gap-2">
     <% if current_user %>
+      <%= link_to "+ Enter new code", get_started_path(:enter_invitation_code), class: "btn btn-sm btn-secondary" %>
       <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost">
           🧑‍💻 <%= current_user.full_name %>
@@ -15,8 +16,7 @@
               <span class="badge">New</span>
             </a>
           </li>
-          <li><%= link_to "Enter new code", get_started_path(:enter_invitation_code) %></li>
-          <li><a>Settings</a></li>
+          <li><a>FAQ</a></li>
           <li><%= button_to "Sign out", destroy_user_session_path, method: :delete  %></li>
         </ul>
       </div>
