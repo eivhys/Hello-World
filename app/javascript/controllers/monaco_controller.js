@@ -17,7 +17,7 @@ export default class extends Controller {
 
   initiateCodeEditor() {
     return monaco.editor.create(document.getElementById('codeEditor'), {
-      value: this.defaultEditorText(),
+      value: "def solution(n):\n  # implement your solution here!\nend",
       language: document.getElementById('codeEditor').dataset.lang,
       theme: 'hc-black',
       lineNumbers: 'on',
@@ -31,15 +31,6 @@ export default class extends Controller {
       hideCursorInOverviewRuler: true,
       overviewRulerBorder: false,
     })
-  }
-
-  defaultEditorText() {
-    const value = document.getElementById('codeEditor').value
-    if (value === "") {
-      return "def solution(n)\n  # Your code here\n end"
-    } else {
-      return value
-    }
   }
 
   dataTarget() {
