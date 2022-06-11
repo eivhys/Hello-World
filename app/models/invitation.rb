@@ -28,12 +28,14 @@
 #
 class Invitation < ApplicationRecord
   belongs_to :claimer, class_name: User.name, optional: true
+  belongs_to :issuer, class_name: User.name, optional: true
   belongs_to :challenge
   has_many :exercises, through: :challenge
   has_many :levels, through: :exercises
 
   validates :code, presence: true, uniqueness: true
-  validates :claimer_id, uniqueness: { scope: :challenge_id }
+  validates :claimer_id, uniqueness: { scope: :challenge_id, message: "has already claimed this invitation" }
+  validates :claimer_id, exclusion: { in: ->(invitation) { [invitation.issuer_id] }, message: "cannot claim their own invitation" }
 
   scope :unclaimed, -> { where(claimer: nil) }
   after_update_commit lambda {
@@ -44,4 +46,8 @@ class Invitation < ApplicationRecord
       target: "invitations"
     )
   }
+
+  def claimed?
+    claimer.present?
+  end
 end

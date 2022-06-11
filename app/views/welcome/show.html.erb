@@ -2,7 +2,7 @@
   <h1 class="font-bold text-4xl">Challenges#index</h1>
   <br/>
   <div class="flex justify-between w-full">
-    <div>
+    <div class="flex-1">
       <br/>
       <%= turbo_frame_tag "invitations" do %>
         <%= render @invitations, user: current_user %>

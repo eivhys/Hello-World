@@ -52,6 +52,7 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :validatable
 
   has_many :claimed_invitations, dependent: :destroy, foreign_key: :claimer_id, class_name: Invitation.name
+  has_many :invitations, dependent: :destroy, foreign_key: :issuer_id, class_name: Invitation.name
   has_many :challenges, through: :claimed_invitations
   has_many :exercises, through: :challenges
   has_many :submissions, dependent: :destroy
