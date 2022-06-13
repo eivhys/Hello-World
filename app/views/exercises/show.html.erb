@@ -1,29 +1,28 @@
 <div class="w-8/12 pr-10">
-  <h1 class="font-bold text-2xl"><%= @exercise.title %></h1>
-  <br/>
-  <p><%= @exercise.description %></p>
+  <div class="mockup-code border" style="background-color: initial; color: inherit; overflow: scroll">
+    <pre data-prefix="$"><code>man exercise-<%= @exercise.title.parameterize %></code></pre>
+    <pre data-prefix=">"><code><b>NAME</b>
+          <%= @exercise.title %> --
+    <div style="margin-top: -3.5rem; margin-left: 3rem; margin-bottom: -5rem"><%= @exercise.description.to_s %></div>
+    </code></pre>
+    <br/>
+    <% turbo_stream_from :submission %>
+    <%= turbo_frame_tag :submission do %>
+      <%= render [] %>
+    <% end %>
+  </div>
 </div>
 <div class="w-6/12">
-  <h2 class="font-bold text-2xl">Solution</h2>
-  <br/>
   <%= simple_form_for :submission, url: exercise_submissions_path(@exercise) do |f| %>
     <%= f.input :implementation, placeholder: "Enter your solution implementation here 📋", as: :hidden %>
     <div data-controller="monaco"
       id="codeEditor"
-      style="width:auto;height:24rem;border:1px solid white;margin-bottom:1rem;"
+      style="width:auto;height:34rem;border:1px solid white;margin-bottom:1rem; margin-top: -.75rem"
       data-lang="ruby"
       data-monaco-target="submission_implementation"
       data-action="change->monaco#onChange keyup->monaco#onChange"
     >
     </div>
     <%= f.button :submit, "ASSESS SOLUTION", class: "btn-primary" %>
-  <% end %>
-  <br/>
-
-  <%= turbo_stream_from :submission %>
-  <%= turbo_frame_tag :submission do %>
-    <% unless current_user.submissions.where(exercise: @exercise).count.zero? %>
-      <%= render [current_user.submissions.where(exercise: @exercise)&.last] %>
-    <% end %>
   <% end %>
 </div>

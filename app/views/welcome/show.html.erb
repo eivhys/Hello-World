@@ -1,5 +1,4 @@
 <div class="container">
-  <br/>
   <!--h1 class="font-bold text-4xl">Challenges#index</h1>
     <div class="flex-1">
       <br/>
@@ -10,11 +9,11 @@
 
   <div class="flex justify-between w-full">
     <div class="border">
-      <div class="mockup-code" style="background-color: initial">
+      <div class="mockup-code" style="background-color: initial; color: inherit">
         <pre data-prefix="$"><code>echo "${greeting}"</code></pre>
         <pre data-prefix=">"><code>👋 Welcome <%= current_user.display_name %>!</code></pre>
         <br/>
-        <pre data-prefix="$"><code>tree --challenges</code></pre>
+        <pre data-prefix="$"><code>tree --challenge --all</code></pre>
         <pre data-prefix=">"><code></code></pre>
         <div style="margin-left: 3rem; margin-top: -1.4rem">
           <%= turbo_frame_tag "invitations" do %>
@@ -34,7 +33,6 @@
         <br/>
         <pre data-prefix="$"><code>help</code></pre>
         <pre data-prefix=">"><code>Please see the <a class="link">FAQ</a> or contact us at <a href="mailto:hello@world.com" class="link">hello@world.com</a>.</code></pre>
-        <br/>
         <!--pre data-prefix="$">
         <div style="margin-left: 3rem; margin-top: -7.6rem">
         <%#= simple_form_for :invitation, url: welcome_path, method: :patch, local: true do |f| %>

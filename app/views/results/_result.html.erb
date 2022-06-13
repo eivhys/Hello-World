@@ -1,14 +1,11 @@
-<% alert_color = {
-  'passed' => 'success',
-  'failed' => 'error',
-}[result.state] || "info" %>
-
 <%= turbo_frame_tag result do %>
-  <% if result.passed? %>
-    ✅
-  <% elsif result.failed? %>
-    ❌
+  <% color = case result.state.upcase %>
+    <% when "PASSED" %>
+      <% "green" %>
+    <% when "FAILED" %>
+      <% "red" %>
+    <% else %>
+      <% "inherit" %>
   <% end %>
-  Assessment [<%= result.state.upcase %>] <%= "- #{result.time_spent}s" if result.finished? %>
-  <br/>
+  <div style="<%= "color: #{color}" %>">assessment [<%= result.state.upcase %>]<br/></div>
 <% end %>

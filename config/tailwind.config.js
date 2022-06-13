@@ -20,7 +20,7 @@ module.exports = {
           ...require("daisyui/src/colors/themes")["[data-theme=cyberpunk]"],
           primary: "blue",
           "primary-focus": "mediumblue",
-          "base-100": "#111",
+          "base-100": "black",
         },
       },
     ],

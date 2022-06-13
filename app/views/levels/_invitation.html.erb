@@ -1,0 +1,26 @@
+<span>
+  / <%= link_to "#{invitation.challenge.title} (#{user.passed_exercises.joins(:challenge).where(challenges: invitation.challenge).count}/#{invitation.challenge.exercises.count})", invitation.challenge, class: "link", data: { turbo: false }  %>
+</span>
+<br/>
+<% invitation.challenge.levels.each.with_index(1) do |level, level_index| %>
+  <% if level_index == invitation.challenge.levels.count %>
+    └──
+  <% else %>
+    ├──
+  <% end %>
+  Level <%= level_index %>: <%= level.title %> (<%= user.passed_exercises.where(level: level).count %>/<%= level.exercises.count %>)<br/>
+  <% level.exercises.each.with_index(1) do |exercise, exercise_index| %>
+    <% if level_index == level.exercises.count && !(level.exercises.count == exercise_index) || level_index < invitation.challenge.levels.count %>
+      │&nbsp;&nbsp;
+    <% else %>
+      &nbsp;&nbsp;&nbsp;
+    <% end %>
+    <% if exercise_index == level.exercises.count %>
+      └──
+    <% else %>
+      ├──
+    <% end %>
+    <%= link_to "#{exercise.title}#{ " ✅" if user&.passed_exercise?(exercise) }", exercise, class: "link", data: { turbo: false } %>
+  <% end %>
+  <br/>
+<% end %>

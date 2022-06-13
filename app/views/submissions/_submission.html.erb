@@ -1,42 +1,7 @@
+<%= turbo_stream_from :submission %>
 <%= turbo_frame_tag submission do %>
-  <div class="border border-base-300 bg-base-100 rounded-box">
-    <div class="flex text-xl font-medium items-center">
-      Submission assessment <%= submission.created_at %>
-    </div>
-    <div>
-      <% submission.results.each do |result| %>
-        <%= turbo_stream_from :result %>
-        <%= turbo_frame_tag :result do%>
-          <%= render result %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <br/>
+  <pre data-prefix="$"><code>bundle exec ruby <%= submission.user.display_name.parameterize %>.rb</code></pre>
+  <pre data-prefix=">"><code></code></pre>
+  <p><div style="margin-top: -1.5rem; margin-left: 3.2rem;"><% submission.results.each do |result| %><%= turbo_stream_from :result %><%= turbo_frame_tag :result do %><%= render result %><% end %><% end %></div></pre>
 <% end %>
-
-<%#= turbo_frame_tag submission do %>
-  <%# created_at = submission.created_at%>
-  <!--div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
-    <div class="collapse-title text-xl font-medium">
-      Submission assessment <%#= created_at %>
-    </div>
-    <div class="collapse-content">
-      <%# submission.results.each do |result| %>
-        <%#= turbo_stream_from :result %>
-        <%#= turbo_frame_tag :result do%>
-          <%#= render result %>
-        <%# end %>
-      <%# end %>
-    </div>
-  </div-->
-<%# end %>
-<!--div class="stats shadow">
-  <div class="stat">
-    <div class="stat-title"><%#= submission %></div>
-    <div class="stat-value">
-      <a class="link">Passed: <%#= submission.results.filter(&:passed?).count %>/<%= submission.results.count %></a>
-    </div>
-    <div class="stat-desc"><%#= time_ago_in_words(submission.created_at) %> ago</div>
-  </div>
-</div-->
+<br/>

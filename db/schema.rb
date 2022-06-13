@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_124346) do
 
   create_table "challenges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title", null: false
+    t.string "subtitle", null: false
     t.boolean "open", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -116,7 +117,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_124346) do
   create_table "results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "passed", null: false
     t.string "answer"
-    t.float "time_spent"
+    t.decimal "time_spent"
     t.string "state", default: "pending", null: false
     t.uuid "submission_id", null: false
     t.uuid "assessment_id", null: false

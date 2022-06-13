@@ -30,4 +30,17 @@ class Assessment < ApplicationRecord
   validates :leeway, presence: true, numericality: { only_integer: true }
   validates :hidden, inclusion: { in: [true, false] }
   validates :exercise, presence: true
+  validate :recruiter_implementation_does_not_return_nil
+
+  private
+
+  def evaluator
+    Assessments::Runners::Ruby::Evaluator
+  end
+
+  def recruiter_implementation_does_not_return_nil
+    return unless Assessments::Runner.call(exercise.implementation, input, evaluator, timeout).result.nil?
+
+    errors.add(:implementation, "must return a value that's not nil")
+  end
 end

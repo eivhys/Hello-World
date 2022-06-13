@@ -18,7 +18,7 @@ class ExerciseDashboard < Administrate::BaseDashboard
     title: Field::String,
     position: Field::Number,
     unlock_criteria: Field::Number,
-    implementation: Field::String,
+    implementation: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze

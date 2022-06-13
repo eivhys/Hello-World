@@ -206,7 +206,7 @@ senior_exercise_2.assessments.create!(hidden: false,
   NUMBER
   .gsub(/\s/, "").split.join(", ")}]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false,
-  input: "[8, 8, 7, 3, 4, 5, 6, 7, 8, 7, 6, 7, 7, 7, 6, 5, 4, 3, 2, 1, 1,, 2, 1, 5, 4, 3, 7]", leeway: 500)
+  input: "[8, 8, 7, 3, 4, 5, 6, 7, 8, 7, 6, 7, 7, 7, 6, 5, 4, 3, 2, 1, 1, 2, 1, 5, 4, 3, 7]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[0]", leeway: 500)
 senior_exercise_2.assessments.create!(hidden: false, input: "[-3, -2, -1]", leeway: 500)

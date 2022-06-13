@@ -8,7 +8,7 @@
 #  answer        :string
 #  passed        :boolean          not null
 #  state         :string           default("pending"), not null
-#  time_spent    :float
+#  time_spent    :decimal(, )
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  assessment_id :uuid             not null

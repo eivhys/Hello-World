@@ -1,16 +1,21 @@
 <div class="w-8/12 pr-10">
-  <h1 class="font-bold text-2xl"><%= @challenge.title %></h1>
-  <br/>
-  <div class="flex w-full">
-    <div>
-      <p><%= @challenge.description %></p>
+  <div class="mockup-code border" style="background-color: initial; color: inherit">
+    <pre data-prefix="$"><code>man challenge-<%= @challenge.title.parameterize %></code></pre>
+    <pre data-prefix=">"><code><b>NAME</b>
+          <%= @challenge.title %> -- <%= @challenge.subtitle %>
+
+     <b>DESCRIPTION</b>
+          <div style="margin-top: -4.5rem; margin-left: 6rem; margin-bottom: -5rem"><%= @challenge.description.to_s %></div>
+    </code></pre>
+    <pre data-prefix="$"><code>tree <%= @challenge.title.parameterize %></code></pre>
+    <pre data-prefix=">"><code></code></pre>
+    <div style="margin-left: 3rem; margin-top: -1.4rem">
+      <%= render "challenges/tree", user: current_user, challenge: @challenge %>
     </div>
   </div>
 </div>
+
 <div>
-  <h1 class="font-bold text-2xl">Levels</h1>
-  <br/>
-  <% @challenge.levels.each do |level| %>
-    <%= render level %>
-  <% end %>
+  <h1 class="font-bold">Leaderboard#index</h1>
+  <p>// TODO: implement</p>
 </div>

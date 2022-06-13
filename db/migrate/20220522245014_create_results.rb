@@ -5,7 +5,7 @@ class CreateResults < ActiveRecord::Migration[7.0]
     create_table(:results, id: :uuid) do |t|
       t.boolean(:passed, null: false)
       t.string(:answer)
-      t.float(:time_spent)
+      t.decimal(:time_spent)
       t.string(:state, null: false, default: "pending")
       t.references(:submission, null: false, foreign_key: true, type: :uuid)
       t.references(:assessment, null: false, foreign_key: true, type: :uuid)

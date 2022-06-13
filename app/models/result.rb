@@ -8,7 +8,7 @@
 #  answer        :string
 #  passed        :boolean          not null
 #  state         :string           default("pending"), not null
-#  time_spent    :float
+#  time_spent    :decimal(, )
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  assessment_id :uuid             not null
@@ -53,6 +53,20 @@ class Result < ApplicationRecord
   delegate :hidden?, :timeout, to: :assessment
 
   def benchmark!
+    # The implementation is considered safe when it has passed the initial test as it doesn't use any of the unallowed methods.
+    return unless passed?
+
+    instance_eval(submission.implementation)
+    update!(
+      time_spent: Benchmark.measure do
+        50_000.times do
+          solution(assessment.input)
+        end
+      end.real
+    )
+  end
+
+  def evaluate!
     start!
     candidate_outcome = Assessments::Runner.call(
       submission.implementation,
@@ -69,7 +83,6 @@ class Result < ApplicationRecord
     finish!(
       passed: acceptable_solution?(candidate_outcome, recruiter_outcome),
       result: candidate_outcome.result,
-      time_spent: candidate_outcome.time_spent
     )
   end
 
@@ -97,11 +110,10 @@ class Result < ApplicationRecord
     update!(state: Result::State::RUNNING)
   end
 
-  def finish!(result:, time_spent:, passed: false)
+  def finish!(result:, passed: false)
     update!(
       passed: passed,
       answer: result,
-      time_spent:,
       state: passed ? Result::State::PASSED : Result::State::FAILED
     )
   end
@@ -113,7 +125,16 @@ class Result < ApplicationRecord
   end
 
   def acceptable_solution?(candidate_outcome, recruiter_outcome)
-    candidate_outcome.result == recruiter_outcome.result \
-      && candidate_outcome.time_spent <= acceptable_upper_time_limit(recruiter_outcome)
+    same_return_value?(candidate_outcome, recruiter_outcome) &&
+      within_acceptable_time_limit?(candidate_outcome, recruiter_outcome) &&
+      !candidate_outcome.result.nil?
+  end
+
+  def same_return_value?(candidate_outcome, recruiter_outcome)
+    candidate_outcome.result == recruiter_outcome.result
+  end
+
+  def within_acceptable_time_limit?(candidate_outcome, recruiter_outcome)
+    candidate_outcome.time_spent <= acceptable_upper_time_limit(recruiter_outcome)
   end
 end
