@@ -53,7 +53,8 @@ class Result < ApplicationRecord
   delegate :hidden?, :timeout, to: :assessment
 
   def benchmark!
-    # The implementation is considered safe when it has passed the initial test as it doesn't use any of the unallowed methods.
+    # The implementation is considered safe when it has passed the initial test
+    # as it doesn't use any of the unallowed methods.
     return unless passed?
 
     instance_eval(submission.implementation)
