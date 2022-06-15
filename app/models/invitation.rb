@@ -35,7 +35,9 @@ class Invitation < ApplicationRecord
 
   validates :code, presence: true, uniqueness: true
   validates :claimer_id, uniqueness: { scope: :challenge_id, message: "has already claimed this invitation" }
-  validates :claimer_id, exclusion: { in: ->(invitation) { [invitation.issuer_id] }, message: "cannot claim their own invitation" }
+  validates :claimer_id, exclusion: { in: ->(invitation) {
+                                            [invitation.issuer_id]
+                                          }, message: "cannot claim their own invitation", }
 
   scope :unclaimed, -> { where(claimer: nil) }
   after_update_commit lambda {
